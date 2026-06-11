@@ -14,6 +14,7 @@ def register():
 
         if not name or not email or not password:
             flash("Preencha todos os campos para continuar.")
+            print("Teste")
             return redirect(url_for("register"))
 
         users.append({"name": name, "email": email})
