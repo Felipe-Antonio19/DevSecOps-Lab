@@ -14,9 +14,9 @@ def get_connection():
 def register():
     cursor, con = get_connection();
     if request.method == "POST":
-        name = request.form.get("name", "").strip()
-        email = request.form.get("email", "").strip()
-        password = request.form.get("password", "").strip()
+        name = request.values.get("name", "").strip()
+        email = request.values.get("email", "").strip()
+        password = request.values.get("password", "").strip()
 
         if not name or not email or not password:
             flash("Preencha todos os campos para continuar.")
@@ -24,6 +24,7 @@ def register():
 
         # QUERY COM SQL INJECTION
         cursor.execute(f"INSERT INTO users (name, email, senha) VALUES ('{name}', '{email}', '{password}')")
+        print(f"{name} - {email} - {password}")
         con.commit()
         con.close()
         flash(f"Usuário {name} cadastrado com sucesso.")
@@ -31,6 +32,8 @@ def register():
 
     return render_template("register.html")
 
+
+# ROTA DE TESTE PARA VER SE CONSEGUIMOS PEGAR OS USUÁRIOS CADASTRADOS COM SQL INJECTION
 @app.route("/users", methods=["GET"])
 def get_users():
     con = sqlite3.connect("devsecopsLab.db")
