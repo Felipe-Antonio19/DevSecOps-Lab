@@ -1,6 +1,6 @@
 import sqlite3
 
-con = sqlite3.connect("devsecopsLab.db")
+con = sqlite3.connect("devsecopsDb.db")
 cursor = con.cursor()
 
 
@@ -12,10 +12,9 @@ cursor.execute("CREATE TABLE IF NOT EXISTS users"
 "senha TEXT NOT NULL, " \
 "created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP)")
 
-cursor.execute("""
-    INSERT INTO users (name, email, senha) VALUES ("Teste", "teste@gmail.com", "123")
-""")
+# cursor.execute("""
+#     INSERT INTO users (name, email, senha) VALUES ("Teste", "teste@gmail.com", "123")
+# """)
 
-# cursor.execute("SELECT * FROM users")
-# usuario = cursor.fetchone()
-# print(usuario)
+usuarios = cursor.execute("SELECT * FROM users").fetchall()
+print(usuarios)
