@@ -2,7 +2,8 @@ name: Continuous integration para laboratório vulneravel
 
 on:
   push:
-    branches: [main, lab/vulnerable, lab/sql-injection]
+    branches: 
+    - "**"
 
 permissions:
   contents: read
