@@ -31,6 +31,7 @@ def register():
         con.commit()
         con.close()
         flash(f"Usuário {name} cadastrado com sucesso.")
+
         return redirect(url_for("register"))
 
     return render_template("register.html")
