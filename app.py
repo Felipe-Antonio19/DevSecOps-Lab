@@ -47,7 +47,6 @@ def login():
             return redirect(url_for("login"))
         
         query = f"SELECT * FROM users WHERE email = '{email}' AND senha = '{password}'"
-        print(query)
         res = cursor.execute(query).fetchone()
         print(res)
         
