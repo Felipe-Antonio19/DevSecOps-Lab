@@ -49,6 +49,7 @@ def login():
         query = f"SELECT * FROM users WHERE email = '{email}' AND senha = '{password}'"
         print(query)
         res = cursor.execute(query).fetchone()
+        print(res)
         
         if res is None:
             flash("Login ou senha inválidos.")
@@ -77,7 +78,7 @@ def dashboard():
 # ROTA DE TESTE PARA VER SE CONSEGUIMOS PEGAR OS USUÁRIOS CADASTRADOS COM SQL INJECTION
 @app.route("/users", methods=["GET"])
 def get_users():
-    con = sqlite3.connect("devsecopsLab.db")
+    con = sqlite3.connect("devsecopsDb.db")
     cursor = con.cursor()
     cursor.execute("SELECT * FROM users")
     usuarios = cursor.fetchall()
