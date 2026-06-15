@@ -26,7 +26,6 @@ def register():
 
         # QUERY COM SQL INJECTION
         query = f"INSERT INTO users (name, email, senha) VALUES ('{name}', '{email}', '{password}')"
-        print(query) # PARA VER O QUE ESTÁ SENDO EXECUTADO NO BANCO DE DADOS
         cursor.execute(query)
         con.commit()
         con.close()
