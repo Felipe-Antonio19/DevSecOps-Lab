@@ -2,8 +2,6 @@ name: Continuous integration para laboratório vulneravel
 
 on:
   push:
-    branches: 
-    - "**"
 
 permissions:
   contents: read
