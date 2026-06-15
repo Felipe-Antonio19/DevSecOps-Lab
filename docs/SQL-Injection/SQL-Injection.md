@@ -30,12 +30,6 @@ Neste exemplo, os dados recebidos do usuário são inseridos diretamente na cons
 
 5. Envie o formulário.
 
-### Evidência
-
-```markdown
-![SQL Injection Evidence]("C:\Users\felip\Documents\DevSecOps-lab\docs\SQL-Injection\Evidence1.png")
-```
-
 ---
 
 ### Resultado Observado
