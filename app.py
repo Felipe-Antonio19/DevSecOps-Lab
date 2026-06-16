@@ -16,9 +16,9 @@ def get_connection():
 def register():
     cursor, con = get_connection();
     if request.method == "POST":
-        name = request.values.get("name", "").strip()
-        email = request.values.get("email", "").strip()
-        password = request.values.get("password", "").strip()
+        name = request.form.get("name", "").strip()
+        email = request.form.get("email", "").strip()
+        password = request.form.get("password", "").strip()
 
         if not name or not email or not password:
             flash("Preencha todos os campos para continuar.")
@@ -39,8 +39,8 @@ def register():
 def login():
     cursor, con = get_connection();
     if request.method == "POST":
-        email = request.values.get("email", "").strip()
-        password = request.values.get("password", "").strip()
+        email = request.form.get("email", "").strip()
+        password = request.form.get("password", "").strip()
         
         if not email or not password:
             flash("Preencha todos os campos para continuar.")
