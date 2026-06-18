@@ -69,15 +69,15 @@ O objetivo não é apenas encontrar falhas, mas compreender todo o processo de i
 
 ## Pipeline DevSecOps
 
-Atualmente o projeto possui um pipeline de Integração Contínua em desenvolvimento utilizando GitHub Actions.
+Atualmente o projeto possui um pipeline de Integração Contínua e um para análise do CodeQl utilizando GitHub Actions.
 
 ### Objetivos do Pipeline
 
 * Automatizar validações de código.
 * Preparar ambiente de execução.
 * Instalar dependências.
-* Executar testes automatizados.
-* Integrar ferramentas de segurança.
+* Executar testes automatizados. (Em desenvolvimento)
+* Executar testes de segurança (CodeQl)
 
 ### Fluxo Atual
 
@@ -97,41 +97,6 @@ Configuração do Python
 Instalação das dependências
 ```
 
-### Próximas Implementações
-
-* CodeQL
-* Dependency Review
-* Dependabot
-* Secret Scanning
-* Pull Request Security Gates
-* Branch Protection Rules
-
----
-
-## Estrutura do Projeto
-
-```text
-devsecops-security-lab/
-│
-├── app/
-│
-├── docs/
-│   ├── sqli-error-based.md
-│   └── sqli-auth-bypass.md
-│
-├── templates/
-│
-├── static/
-│
-├── .github/
-│   └── workflows/
-│       └── ci.yml
-│
-├── requirements.txt
-│
-└── README.md
-```
-
 ---
 
 ## Roadmap
@@ -141,7 +106,7 @@ devsecops-security-lab/
 * [x] Implementação vulnerável
 * [x] Exploração manual
 * [x] Documentação
-* [ ] Detecção com CodeQL
+* [x] Detecção com CodeQL
 * [ ] Correção
 * [ ] Revalidação
 
@@ -189,7 +154,7 @@ Este laboratório está sendo utilizado para aprofundar conhecimentos em:
 * DevSecOps
 * CI/CD
 * GitHub Actions
-* GitHub Advanced Security
+* Estudo para certificação GitHub Advanced Security
 * SAST
 * Segurança de Aplicações Web
 * OWASP Top 10
