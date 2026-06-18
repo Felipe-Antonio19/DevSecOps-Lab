@@ -24,9 +24,7 @@ def register():
             flash("Preencha todos os campos para continuar.")
             return redirect(url_for("register"))
 
-        # QUERY COM SQL INJECTION
-        query = f"INSERT INTO users (name, email, senha) VALUES ('{name}', '{email}', '{password}')"
-        cursor.execute(query)
+        cursor.execute("INSERT INTO users (name, email, senha) VALUES (?,?,?)", (name, email, password))
         con.commit()
         con.close()
         flash(f"Usuário {name} cadastrado com sucesso.")
