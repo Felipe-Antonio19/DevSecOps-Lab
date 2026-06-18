@@ -25,18 +25,33 @@ Objetivo:
 * Manipular a lógica da consulta SQL.
 * Realizar autenticação sem credenciais válidas.
 
+<<<<<<< HEAD
 Payload utilizado:
+=======
+Atualmente o projeto possui um pipeline de Integração Contínua e um para análise do CodeQl utilizando GitHub Actions.
+>>>>>>> a761e4a (Revise README for CI pipeline and CodeQL updates)
 
 ```sql
 ' OR 1=1 --
 ```
 
+<<<<<<< HEAD
 Documentação:
+=======
+* Automatizar validações de código.
+* Preparar ambiente de execução.
+* Instalar dependências.
+* Executar testes automatizados. (Em desenvolvimento)
+* Executar testes de segurança (CodeQl)
+
+### Fluxo Atual
+>>>>>>> a761e4a (Revise README for CI pipeline and CodeQL updates)
 
 ```text
 docs/sqli-auth-bypass.md
 ```
 
+<<<<<<< HEAD
 ## DETECÇÃO 
 * Após a implementação do pipeline codeql.yml é possivel concretizar a presença da vulnerabilidade em dois locais:
   
@@ -72,3 +87,75 @@ cursor.execute("INSERT INTO users (name, email, senha) VALUES (?,?,?)", (name, e
 ---
 
 #### Referencia OWASP - https://owasp.org/Top10/2021/pt-BR/A03_2021-Injection/
+=======
+---
+
+## Roadmap
+
+### Fase 1 - SQL Injection
+
+* [x] Implementação vulnerável
+* [x] Exploração manual
+* [x] Documentação
+* [x] Detecção com CodeQL
+* [ ] Correção
+* [ ] Revalidação
+
+### Fase 2 - Cross Site Scripting (XSS)
+
+* [ ] Implementação vulnerável
+* [ ] Exploração
+* [ ] Detecção automatizada
+* [ ] Correção
+
+### Fase 3 - Path Traversal
+
+* [ ] Implementação vulnerável
+* [ ] Exploração
+* [ ] Detecção automatizada
+* [ ] Correção
+
+### Fase 4 - Command Injection
+
+* [ ] Implementação vulnerável
+* [ ] Exploração
+* [ ] Detecção automatizada
+* [ ] Correção
+
+### Fase 5 - SSRF
+
+* [ ] Implementação vulnerável
+* [ ] Exploração
+* [ ] Detecção automatizada
+* [ ] Correção
+
+### Fase 6 - Hardcoded Secrets
+
+* [ ] Implementação vulnerável
+* [ ] Detecção com Secret Scanning
+* [ ] Remediação
+
+---
+
+## Objetivos de Aprendizado
+
+Este laboratório está sendo utilizado para aprofundar conhecimentos em:
+
+* Desenvolvimento Seguro
+* DevSecOps
+* CI/CD
+* GitHub Actions
+* Estudo para certificação GitHub Advanced Security
+* SAST
+* Segurança de Aplicações Web
+* OWASP Top 10
+* Automação de Segurança
+
+---
+
+## Aviso
+
+Este projeto contém vulnerabilidades intencionais e foi desenvolvido exclusivamente para fins educacionais e laboratoriais.
+
+Não utilize os exemplos apresentados em ambientes de produção.
+>>>>>>> a761e4a (Revise README for CI pipeline and CodeQL updates)
