@@ -44,9 +44,7 @@ def login():
             flash("Preencha todos os campos para continuar.")
             return redirect(url_for("login"))
         
-        query = f"SELECT * FROM users WHERE email = '{email}' AND senha = '{password}'"
-        res = cursor.execute(query).fetchone()
-        print(res)
+        res = cursor.execute("SELECT * FROM users WHERE email = '?' AND senha = '?'", (email, password)).fetchone()
         
         if res is None:
             flash("Login ou senha inválidos.")
