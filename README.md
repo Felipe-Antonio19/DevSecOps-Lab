@@ -46,8 +46,21 @@ docs/sqli-auth-bypass.md
 *   Query de select no banco de dados.
 <img width="957" height="303" alt="image" src="https://github.com/user-attachments/assets/230fbbc6-a239-45f2-8d8c-9628993ca9f0" />
 
+## CORREÇÃO
 
+#### Adicionando consultas parametrizadas respectivamente em ambas as queries
 
+```python
+res = cursor.execute("SELECT * FROM users WHERE email = '?' AND senha = '?'", (email, password)).fetchone()
+```
+
+```python
+cursor.execute("INSERT INTO users (name, email, senha) VALUES (?,?,?)", (name, email, password))
+```
+
+#### Pode-se notar a ausência da detecção da vulnerabilidade no ambiente pelo CodeQl
+
+<img width="1292" height="544" alt="image" src="https://github.com/user-attachments/assets/f7449f7b-61f2-445b-a5a5-d781b39f28c7" />
 
 #### Aprendizados
 
@@ -56,5 +69,6 @@ docs/sqli-auth-bypass.md
 * Bypass de autenticação.
 * Consultas parametrizadas.
 * Mitigação de SQL Injection.
-
 ---
+
+#### Referencia OWASP - https://owasp.org/Top10/2021/pt-BR/A03_2021-Injection/
