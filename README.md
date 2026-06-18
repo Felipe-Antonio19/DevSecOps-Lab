@@ -1,18 +1,11 @@
-# DevSecOps-Lab
-
-## Vulnerabilidades Estudadas
-
-### SQL Injection
-
-Status: Concluído
+# SQL-INJECTION
 
 #### Cenário
-
 Foi implementada uma funcionalidade de autenticação vulnerável utilizando concatenação de strings para construção de consultas SQL.
 
-#### Testes realizados
+## Testes realizados
 
-##### Error Based SQL Injection
+### Error Based SQL Injection
 
 Objetivo:
 
@@ -25,7 +18,7 @@ Documentação:
 docs/sqli-error-based.md
 ```
 
-##### Authentication Bypass
+### Authentication Bypass
 
 Objetivo:
 
@@ -43,6 +36,12 @@ Documentação:
 ```text
 docs/sqli-auth-bypass.md
 ```
+
+## DETECÇÃO 
+
+<img width="1284" height="811" alt="image" src="https://github.com/user-attachments/assets/90b96216-d90a-474a-93e8-f54c49f3cf59" />
+
+* Após a implementação do pipeline codeql.yml é possivel concretizar a presença da vulnerabilidade
 
 #### Aprendizados
 
