@@ -87,4 +87,3 @@ cursor.execute("INSERT INTO users (name, email, senha) VALUES (?,?,?)", (name, e
 Este projeto contém vulnerabilidades intencionais e foi desenvolvido exclusivamente para fins educacionais e laboratoriais.
 
 Não utilize os exemplos apresentados em ambientes de produção.
->>>>>>> a761e4a (Revise README for CI pipeline and CodeQL updates)
