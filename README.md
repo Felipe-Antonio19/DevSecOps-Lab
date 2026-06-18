@@ -38,10 +38,11 @@ docs/sqli-auth-bypass.md
 ```
 
 ## DETECÇÃO 
+* Após a implementação do pipeline codeql.yml é possivel concretizar a presença da vulnerabilidade
 
 <img width="1284" height="811" alt="image" src="https://github.com/user-attachments/assets/90b96216-d90a-474a-93e8-f54c49f3cf59" />
 
-* Após a implementação do pipeline codeql.yml é possivel concretizar a presença da vulnerabilidade
+
 
 #### Aprendizados
 
