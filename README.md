@@ -1,40 +1,77 @@
-# SQL-INJECTION
+# DevSecOps Security Lab
 
-#### Cenário
-Foi implementada uma funcionalidade de autenticação vulnerável utilizando concatenação de strings para construção de consultas SQL.
+Laboratório prático de DevSecOps desenvolvido para estudar vulnerabilidades de aplicações web, técnicas de exploração, remediação e automação de segurança em pipelines CI/CD.
 
-## Testes realizados
+## Objetivo
 
-### Error Based SQL Injection
+Este projeto foi criado para simular o ciclo de vida de vulnerabilidades em um ambiente controlado, permitindo:
 
-Objetivo:
+* Desenvolver funcionalidades vulneráveis intencionalmente.
+* Explorar vulnerabilidades de forma prática.
+* Entender os impactos de negócio e segurança.
+* Implementar correções seguindo boas práticas.
+* Integrar ferramentas de segurança em pipelines DevSecOps.
+* Automatizar a detecção de vulnerabilidades durante o desenvolvimento.
 
-* Identificar falhas no tratamento de entrada.
-* Observar mensagens de erro geradas pelo banco.
+O foco principal é demonstrar a aplicação prática dos conceitos de Secure SDLC (Secure Software Development Lifecycle) e DevSecOps.
 
-Documentação:
+---
+
+## Tecnologias Utilizadas
+
+### Aplicação
+
+* Python
+* Flask
+* SQLite
+* HTML
+* CSS
+
+### Segurança
+
+* GitHub Actions
+* GitHub Advanced Security
+* CodeQL (em implementação)
+
+### Controle de Versão
+
+* Git
+* GitHub
+
+---
+
+## Metodologia
+
+Cada vulnerabilidade segue o mesmo fluxo de trabalho:
 
 ```text
-docs/sqli-error-based.md
+Implementação Vulnerável
+        │
+        ▼
+Exploração Manual
+        │
+        ▼
+Documentação
+        │
+        ▼
+Detecção Automatizada
+        │
+        ▼
+Correção
+        │
+        ▼
+Validação
 ```
 
-### Authentication Bypass
+O objetivo não é apenas encontrar falhas, mas compreender todo o processo de identificação, correção e prevenção.
 
-Objetivo:
+---
 
-* Manipular a lógica da consulta SQL.
-* Realizar autenticação sem credenciais válidas.
-
-Payload utilizado:
+## Pipeline DevSecOps
 
 Atualmente o projeto possui um pipeline de Integração Contínua e um para análise do CodeQl utilizando GitHub Actions.
 
-```sql
-' OR 1=1 --
-```
-
-
-Documentação:
+### Objetivos do Pipeline
 
 * Automatizar validações de código.
 * Preparar ambiente de execução.
@@ -45,45 +82,88 @@ Documentação:
 ### Fluxo Atual
 
 ```text
-docs/sqli-auth-bypass.md
+Push
+ │
+ ▼
+GitHub Actions
+ │
+ ▼
+Checkout do código
+ │
+ ▼
+Configuração do Python
+ │
+ ▼
+Instalação das dependências
 ```
 
-
-## DETECÇÃO 
-* Após a implementação do pipeline codeql.yml é possivel concretizar a presença da vulnerabilidade em dois locais:
-  
-*   Query de insert no banco de dados.
-<img width="1284" height="811" alt="image" src="https://github.com/user-attachments/assets/90b96216-d90a-474a-93e8-f54c49f3cf59" />
-
-*   Query de select no banco de dados.
-<img width="957" height="303" alt="image" src="https://github.com/user-attachments/assets/230fbbc6-a239-45f2-8d8c-9628993ca9f0" />
-
-## CORREÇÃO
-
-#### Adicionando consultas parametrizadas respectivamente em ambas as queries
-
-```python
-res = cursor.execute("SELECT * FROM users WHERE email = '?' AND senha = '?'", (email, password)).fetchone()
-```
-
-```python
-cursor.execute("INSERT INTO users (name, email, senha) VALUES (?,?,?)", (name, email, password))
-```
-
-#### Pode-se notar a ausência da detecção da vulnerabilidade no ambiente pelo CodeQl
-
-<img width="1292" height="544" alt="image" src="https://github.com/user-attachments/assets/f7449f7b-61f2-445b-a5a5-d781b39f28c7" />
-
-#### Aprendizados
-
-* Construção insegura de consultas SQL.
-* Impacto da entrada controlada pelo usuário.
-* Bypass de autenticação.
-* Consultas parametrizadas.
-* Mitigação de SQL Injection.
 ---
 
-#### Referencia OWASP - https://owasp.org/Top10/2021/pt-BR/A03_2021-Injection/
+## Roadmap
+
+### Fase 1 - SQL Injection
+
+* [x] Implementação vulnerável
+* [x] Exploração manual
+* [x] Documentação
+* [x] Detecção com CodeQL
+* [ ] Correção
+* [ ] Revalidação
+
+### Fase 2 - Cross Site Scripting (XSS)
+
+* [ ] Implementação vulnerável
+* [ ] Exploração
+* [ ] Detecção automatizada
+* [ ] Correção
+
+### Fase 3 - Path Traversal
+
+* [ ] Implementação vulnerável
+* [ ] Exploração
+* [ ] Detecção automatizada
+* [ ] Correção
+
+### Fase 4 - Command Injection
+
+* [ ] Implementação vulnerável
+* [ ] Exploração
+* [ ] Detecção automatizada
+* [ ] Correção
+
+### Fase 5 - SSRF
+
+* [ ] Implementação vulnerável
+* [ ] Exploração
+* [ ] Detecção automatizada
+* [ ] Correção
+
+### Fase 6 - Hardcoded Secrets
+
+* [ ] Implementação vulnerável
+* [ ] Detecção com Secret Scanning
+* [ ] Remediação
+
+---
+
+## Objetivos de Aprendizado
+
+Este laboratório está sendo utilizado para aprofundar conhecimentos em:
+
+* Desenvolvimento Seguro
+* DevSecOps
+* CI/CD
+* GitHub Actions
+* Estudo para certificação GitHub Advanced Security
+* SAST
+* Segurança de Aplicações Web
+* OWASP Top 10
+* Automação de Segurança
+
+---
+
+## Aviso
+
 Este projeto contém vulnerabilidades intencionais e foi desenvolvido exclusivamente para fins educacionais e laboratoriais.
 
 Não utilize os exemplos apresentados em ambientes de produção.
