@@ -81,4 +81,4 @@ def get_users():
     return jsonify(usuarios)
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run()
