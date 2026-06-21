@@ -44,13 +44,16 @@ def login():
             flash("Preencha todos os campos para continuar.")
             return redirect(url_for("login"))
         
-        res = cursor.execute("SELECT * FROM users WHERE email = '?' AND senha = '?'", (email, password)).fetchone()
-        
+        res = cursor.execute("SELECT name, email FROM users WHERE email = ? AND senha = ?", (email, password)).fetchone()
+        con.close()
+
         if res is None:
             flash("Login ou senha inválidos.")
             return redirect(url_for("login"))
         else:
             session["logged_in"] = True
+            session["name"] = res[0]
+            session["email"] = res[1]
             return redirect(url_for("dashboard"))
 
     return render_template("login.html")
@@ -63,11 +66,15 @@ def dashboard():
 
     return render_template(
         "dashboard.html",
-        name=session.get("name")
+        name=session.get("name"),
+        email=session.get("email")
     )
 
-    return render_template("login.html")
-
+@app.route("/logout")
+def logout():
+    session.clear()
+    flash("Você saiu com sucesso.")
+    return redirect(url_for("login"))
 
 
 # ROTA DE TESTE PARA VER SE CONSEGUIMOS PEGAR OS USUÁRIOS CADASTRADOS COM SQL INJECTION

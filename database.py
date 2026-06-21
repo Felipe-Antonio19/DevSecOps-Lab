@@ -16,5 +16,12 @@ cursor.execute("CREATE TABLE IF NOT EXISTS users"
 #     INSERT INTO users (name, email, senha) VALUES ("Teste", "teste@gmail.com", "123")
 # """)
 
-usuarios = cursor.execute("SELECT * FROM users").fetchall()
+cursor.execute("CREATE TABLE IF NOT EXISTS tasks" \
+"(id INTEGER PRIMARY KEY AUTOINCREMENT, " \
+"title TEXT NOT NULL, " \
+"description TEXT NOT NULL," \
+"owner_id INTEGER NOT NULL," \
+"FOREIGN KEY(owner_id) REFERENCES users(id))")
+
+usuarios = cursor.execute("SELECT * FROM tasks").fetchall()
 print(usuarios)
