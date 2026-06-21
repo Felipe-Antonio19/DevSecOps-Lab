@@ -107,42 +107,17 @@ Instalação das dependências
 * [x] Exploração manual
 * [x] Documentação
 * [x] Detecção com CodeQL
-* [ ] Correção
-* [ ] Revalidação
+* [x] Correção
+* [x] Validação
 
-### Fase 2 - Cross Site Scripting (XSS)
-
-* [ ] Implementação vulnerável
-* [ ] Exploração
-* [ ] Detecção automatizada
-* [ ] Correção
-
-### Fase 3 - Path Traversal
+### Fase 2 - Broken Access Control
 
 * [ ] Implementação vulnerável
 * [ ] Exploração
+* [ ] Documentação
 * [ ] Detecção automatizada
 * [ ] Correção
-
-### Fase 4 - Command Injection
-
-* [ ] Implementação vulnerável
-* [ ] Exploração
-* [ ] Detecção automatizada
-* [ ] Correção
-
-### Fase 5 - SSRF
-
-* [ ] Implementação vulnerável
-* [ ] Exploração
-* [ ] Detecção automatizada
-* [ ] Correção
-
-### Fase 6 - Hardcoded Secrets
-
-* [ ] Implementação vulnerável
-* [ ] Detecção com Secret Scanning
-* [ ] Remediação
+* [ ] Validação
 
 ---
 
