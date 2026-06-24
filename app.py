@@ -99,6 +99,8 @@ def tasks():
 
 @app.route("/tasks/delete", methods=["POST"])
 def delete_tasks():
+    cursor, con = get_connection()
+    
     if not session.get("logged_in"):
         flash("Faça login para continuar.")
         return redirect(url_for("login"))
@@ -114,7 +116,6 @@ def delete_tasks():
         return redirect(url_for("tasks"))
 
     placeholders = ",".join("?" for _ in ids)
-    cursor, con = get_connection()
     cursor.execute(
     f"DELETE FROM tasks WHERE id IN ({placeholders})", ids)
     deleted = cursor.rowcount
