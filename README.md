@@ -112,12 +112,12 @@ Instalação das dependências
 
 ### Fase 2 - Broken Access Control
 
-* [ ] Implementação vulnerável
-* [ ] Exploração
-* [ ] Documentação
-* [ ] Detecção automatizada
-* [ ] Correção
-* [ ] Validação
+* [x] Implementação vulnerável
+* [x] Exploração
+* [x] Documentação
+* [x] Detecção automatizada
+* [x] Correção
+* [x] Validação
 
 ---
 
