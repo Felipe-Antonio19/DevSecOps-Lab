@@ -130,23 +130,23 @@ def logout():
     flash("Você saiu com sucesso.")
     return redirect(url_for("login"))
 
-@app.route("/get_users", methods=["GET"])
-def get_users():
-    con = sqlite3.connect("devsecopsDb.db")
-    cursor = con.cursor()
-    cursor.execute("SELECT * FROM users")
-    usuarios = cursor.fetchall()
-    con.close()
-    return jsonify(usuarios)
+# @app.route("/get_users", methods=["GET"])
+# def get_users():
+#     con = sqlite3.connect("devsecopsDb.db")
+#     cursor = con.cursor()
+#     cursor.execute("SELECT * FROM users")
+#     usuarios = cursor.fetchall()
+#     con.close()
+#     return jsonify(usuarios)
 
-@app.route("/get_tasks", methods=["GET"])
-def get_tasks():
-    con = sqlite3.connect("devsecopsDb.db")
-    cursor = con.cursor()
-    cursor.execute("SELECT * FROM tasks")
-    usuarios = cursor.fetchall()
-    con.close()
-    return jsonify(usuarios)
+# @app.route("/get_tasks", methods=["GET"])
+# def get_tasks():
+#     con = sqlite3.connect("devsecopsDb.db")
+#     cursor = con.cursor()
+#     cursor.execute("SELECT * FROM tasks")
+#     usuarios = cursor.fetchall()
+#     con.close()
+#     return jsonify(usuarios)
 
 if __name__ == "__main__":
     app.run(debug=True)
