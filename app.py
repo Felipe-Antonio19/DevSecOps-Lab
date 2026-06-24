@@ -25,7 +25,7 @@ def register():
             flash("Preencha todos os campos para continuar.")
             return redirect(url_for("register"))
 
-        cursor.execute("INSERT INTO users (name, email, senha) VALUES {name}, {email}, {password}")
+        cursor.execute(f"INSERT INTO users (name, email, senha) VALUES '{name}', '{email}', '{password}'")
         con.commit()
         con.close()
         flash(f"Usuário {name} cadastrado com sucesso.")
@@ -45,7 +45,7 @@ def login():
             flash("Preencha todos os campos para continuar.")
             return redirect(url_for("login"))
         
-        res = cursor.execute("SELECT name, email, id FROM users WHERE email = {email} AND senha = {password}").fetchone()
+        res = cursor.execute(f"SELECT name, email, id FROM users WHERE email = '{email}' AND senha = '{password}'").fetchone()
         con.close()
 
         if res is None:
@@ -81,7 +81,7 @@ def tasks():
         title = request.form.get("title", "").strip()
         description = request.form.get("description", "").strip()
 
-        cursor.execute("INSERT INTO tasks (title, description, owner_id) VALUES {title},{description},{owner_id}")
+        cursor.execute(f"INSERT INTO tasks (title, description, owner_id) VALUES '{title}','{description}','{owner_id}'")
         con.commit()
         con.close()
         flash("Task inserida com sucesso.")
