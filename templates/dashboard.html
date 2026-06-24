@@ -74,13 +74,18 @@
 
       <div class="card">
         <strong>Resumo da conta</strong>
-        <p>Nome: <span id="user-name">Usuário autenticado</span></p>
-        <p>E-mail: <span id="user-email">seu-email@exemplo.com</span></p>
-        <p class="status">Sessão ativa. Use os botões abaixo para navegar ou sair.</p>
+        {% if name and email %}
+          <p>Nome: <span id="user-name">{{ name }}</span></p>
+          <p>E-mail: <span id="user-email">{{ email }}</span></p>
+        {% else %}
+          <p>Nome: <span id="user-name">Usuário autenticado</span></p>
+          <p>E-mail: <span id="user-email">seu-email@exemplo.com</span></p>
+        {% endif %}
+        <p class="status">Sessão ativa. Use a navegação abaixo para acessar suas tasks.</p>
       </div>
 
       <div class="actions">
-        <a href="/profile">Meu perfil</a>
+        <a href="/tasks">Minhas tasks</a>
         <a href="/logout">Sair</a>
       </div>
     </div>
