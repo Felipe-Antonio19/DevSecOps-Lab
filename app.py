@@ -87,7 +87,7 @@ def tasks():
         flash("Task inserida com sucesso.")
         return redirect(request.url)
 
-    cursor.execute("SELECT * FROM tasks WHERE owner_id = ?", (owner_id,))
+    cursor.execute("SELECT * FROM tasks")
     tasks = cursor.fetchall()
     con.close()
     return render_template(
@@ -103,7 +103,6 @@ def delete_tasks():
         flash("Faça login para continuar.")
         return redirect(url_for("login"))
 
-    owner_id = session.get("user_id")
     task_ids = request.form.getlist("task_ids")
     if not task_ids:
         flash("Selecione ao menos uma task para excluir.")
@@ -116,7 +115,8 @@ def delete_tasks():
 
     placeholders = ",".join("?" for _ in ids)
     cursor, con = get_connection()
-    cursor.execute(f"DELETE FROM tasks WHERE id IN ({placeholders}) AND owner_id = ?", (*ids, owner_id))
+    cursor.execute(
+    f"DELETE FROM tasks WHERE id IN ({placeholders})", ids)
     deleted = cursor.rowcount
     con.commit()
     con.close()
