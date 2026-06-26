@@ -1,15 +1,23 @@
 from flask import Flask, render_template, request, redirect, url_for, flash
 from flask import jsonify
 from flask import session
+from dataclasses import dataclass
 
 import sqlite3
 app = Flask(__name__)
+
+@dataclass
+class Usuario:
+    id: int
+    nome: str
+    email: str
+    senha: str
 
 app.secret_key = "uiow4ehjt98uw34t8943wtjw4g"
 
 def get_connection():
     con = sqlite3.connect("devsecopsDb.db")
-    con.row_factory = sqlite3.Row
+    # con.row_factory = sqlite3.Row
     cursor = con.cursor()
     return cursor, con
 
@@ -36,27 +44,44 @@ def register():
 
 @app.route("/login", methods=["GET", "POST"])
 def login():
-    cursor, con = get_connection();
+    cursor, con = get_connection()
+
     if request.method == "POST":
         email = request.form.get("email", "").strip()
         password = request.form.get("password", "").strip()
-        
+
         if not email or not password:
             flash("Preencha todos os campos para continuar.")
             return redirect(url_for("login"))
+
+        # Busca usuario via email apenas.
+        user = cursor.execute(f"SELECT id, name, email, senha FROM users WHERE email = '{email}'").fetchone()
         
-        res = cursor.execute(f"SELECT name, email, id FROM users WHERE email = '{email}' AND senha = '{password}'").fetchone()
+        # 2. Diferencia comportamento se usuário existe ou não
+        if not user:
+            con.close()
+            flash("Usuário não encontrado")
+            return redirect(url_for("login"))
+        
+        user = Usuario(*user)
+        # Aqui sabe-se que o usuario existe apenas por verificação via email
+        db_password = user.senha
+
+        # 4. Verificação separada da senha (também contribui para enumeração)
+        if password != db_password:
+            con.close()
+            flash("Senha incorreta")
+            return redirect(url_for("login"))
+
+        # 5. Login bem-sucedido
         con.close()
 
-        if res is None:
-            flash("Login ou senha inválidos.")
-            return redirect(url_for("login"))
-        else:
-            session["logged_in"] = True
-            session["name"] = res[0]
-            session["email"] = res[1]
-            session["user_id"] = res[2]
-            return redirect(url_for("dashboard"))
+        session["logged_in"] = True
+        session["user_id"] = user[0]
+        session["name"] = user[1]
+        session["email"] = user[2]
+
+        return redirect(url_for("dashboard"))
 
     return render_template("login.html")
         
